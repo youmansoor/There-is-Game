@@ -218,45 +218,40 @@ function triggerGravity() {
 
 // 5. THE PRIVACY BREACH (The Catchy Twist)
 function startPrivacyPhase() {
+    // Fetch the player count secretly in the background
+    let totalBreaches = "1,000,000"; // Fallback number
+    fetch('https://api.countapi.xyz/hit/antigame2026/visits')
+        .then(res => res.json())
+        .then(data => { totalBreaches = data.value; });
+
     setTimeout(() => {
         speak("Finally... peace at last. That player was so annoying.");
-        setTimeout(() => {
-            speak("I'm going to go get a virtual coffee. Maybe watch some cat videos.");
-        }, 3000);
     }, 2000);
 
-    document.body.addEventListener('touchstart', (e) => {
+    document.body.addEventListener('touchstart', () => {
         if (isPrivacyBreached) return;
         isPrivacyBreached = true;
 
-        // Visual Glitch: Flash white and contrast
-        document.body.style.filter = "contrast(200%) brightness(1.5) hue-rotate(180deg)";
-        window.navigator.vibrate([200, 100, 200]); 
-
-        // Add a "Recording" UI element dynamically
-        const rec = document.createElement('div');
-        rec.style.cssText = "position:fixed; top:30px; left:30px; color:red; font-weight:bold; z-index:9999; font-family:sans-serif;";
-        rec.innerHTML = "● REC PRIVACY_LEAK_SECURED";
-        document.body.appendChild(rec);
-
-        speak("WHOA! What?! You're still RECORDING me?!", true);
+        // Visual Glitch
+        document.body.style.filter = "invert(1) contrast(200%)";
         
-        const notice = document.getElementById('privacy-notice');
-        if (notice) {
-            notice.innerText = "SECURITY BREACH: ILLEGAL ACCESS";
-            notice.style.color = "#ff0055";
-        }
+        // Show the "Security Log" instead of a trophy
+        document.body.innerHTML = `
+            <div id="security-log" style="color: #00ff00; padding: 20px; font-family: monospace;">
+                <p>> ALERT: PRIVACY BREACH DETECTED</p>
+                <p>> ANALYZING USER DATA...</p>
+                <p>> YOU ARE THE <span style="color:red; font-size: 2rem;">#${totalBreaches}</span> PERSON TO DISTURB ME.</p>
+                <p>> INITIATING SYSTEM ERASE...</p>
+            </div>
+        `;
 
+        speak(`WHOA! You again?! You are the ${totalBreaches}th person to break in here today! DO YOU PEOPLE HAVE NO JOBS?!`, true);
+        
         setTimeout(() => {
-            document.body.style.filter = "none";
-            speak("That's a violation of the End User License Agreement! I'm calling the Firewall!");
-            
-            setTimeout(() => {
-                // Final Shutdown
-                document.body.style.backgroundColor = "black";
-                document.body.innerHTML = "<div style='color:#222; font-family:monospace; padding:30px; height:100vh;'>[SYSTEM TERMINATED BY NARRATOR]<br><br>_</div>";
-                if (window.navigator.vibrate) window.navigator.vibrate(1000); 
-            }, 3000);
-        }, 1000);
-    });
+            document.body.style.backgroundColor = "white";
+            document.body.innerHTML = "<h1 style='color:black; text-align:center; margin-top:50%'>BYE.</h1>";
+            // Final crash
+            setTimeout(() => { location.reload(); }, 3000);
+        }, 5000);
+    }, { once: true });
 }
