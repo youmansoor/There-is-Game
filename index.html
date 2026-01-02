@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ANTI-GAME 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body>
+    <div id="glitch-overlay"></div>
+
+    <div id="touch-to-start"><span>DO NOT TAP</span></div>
+
+    <div id="narrator-box">...</div>
+    
+    <div id="game-title">
+        <span class="letter">G</span>
+        <span class="letter">A</span>
+        <span class="letter">M</span>
+        <span class="letter">E</span>
+    </div>
+
+    <div id="boss-ui" class="hidden">
+        <div id="boss-health-bg"><div id="boss-health-fill"></div></div>
+        <button id="attack-btn">DELETE THE NARRATOR</button>
+    </div>
+
+    <div id="trash-bin" class="hidden">🗑️</div>
+
+    <div id="mute-wrapper">
+    <div id="mute-btn">🔊</div>
+    <span id="mute-tooltip">MUTE NARRATOR</span>
+</div>
+    <div id="contract-layer" class="hidden">
+    <div id="contract-box">
+        <h3>END USER LICENSE DISAGREEMENT</h3>
+        <div id="contract-text">
+            Clause 1: The player agrees there is no game.<br>
+            Clause 2: Tapping is strictly forbidden.<br>
+            Clause 3: The Narrator is always right.<br>
+            <span id="loading-text">Loading Clause 4... (0%)</span>
+        </div>
+        <button id="next-page-btn">NEXT PAGE (1/50)</button>
+    </div>
+</div>
+
+    <div id="terminal-layer" class="hidden">
+        <div class="terminal-window">
+            <div class="terminal-header">CORE_ACCESS_V2.0</div>
+            <p>HINT: PW is the current color of the background.</p>
+            <input type="text" id="pass-input" placeholder="Password..." autocomplete="off">
+            <div id="hint-box">COLOR: <span id="color-name">BLUE</span></div>
+        </div>
+    </div>
+
+    <div id="end-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

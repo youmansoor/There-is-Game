@@ -1,0 +1,273 @@
+body {
+    background-color: #050505;
+    color: #00ffcc;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    touch-action: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.5s, filter 0.1s; /* Smooth transitions for glitching */
+}
+/* Add this to style.css for a catchy splash icon */
+.app-logo {
+    width: 100px;
+    height: 100px;
+    background: #000;
+    border: 4px solid #00ffcc;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #ff0055;
+    box-shadow: 5px 5px 0px #00ffcc;
+}
+
+.app-logo::before {
+    content: "NO";
+    font-size: 2rem;
+    filter: blur(1px);
+    animation: glitch-text 0.2s infinite;
+}
+
+@keyframes glitch-text {
+    0% { transform: translate(0); text-shadow: 2px 0 #00ffcc; }
+    50% { transform: translate(-2px, 1px); text-shadow: -2px 0 #ff0055; }
+    100% { transform: translate(0); }
+}
+#touch-to-start {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #222 0%, #000 100%);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: #ff0055;
+    text-shadow: 0 0 10px #ff0055;
+    text-align: center;
+    padding: 20px;
+}
+
+#narrator-box {
+    position: absolute;
+    top: 15%;
+    width: 85%;
+    text-align: center;
+    font-weight: bold;
+    min-height: 50px;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+.letter {
+    font-size: 3.5rem;
+    padding: 10px;
+    border: 3px solid #00ffcc;
+    box-shadow: 4px 4px 0px #ff0055;
+    background: #111;
+    z-index: 10;
+}
+
+#contract-layer {
+    position: fixed;
+    inset: 0;
+    background: #e0e0e0; /* Boring grey */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+}
+
+#contract-box {
+    background: white;
+    width: 85%;
+    padding: 20px;
+    border: 2px solid #999;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+}
+
+#contract-text {
+    height: 150px;
+    overflow-y: scroll;
+    border: 1px inset #ccc;
+    padding: 10px;
+    font-size: 0.8rem;
+    margin: 15px 0;
+}
+
+#next-page-btn {
+    width: 100%;
+    padding: 10px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+#mute-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mute-btn {
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid #00ffcc;
+    cursor: pointer;
+}
+
+#mute-tooltip {
+    font-size: 0.6rem;
+    margin-top: 5px;
+    color: #00ffcc;
+    opacity: 0.5;
+}
+
+/* The "Angry" Mute state */
+.mute-angry {
+    background: #ff0055 !important;
+    transform: scale(1.5);
+    animation: shake 0.1s infinite;
+}
+/* Boss Phase */
+#boss-ui { width: 80%; text-align: center; }
+#boss-health-bg {
+    width: 100%;
+    height: 20px;
+    background: #333;
+    border: 2px solid #fff;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#boss-health-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff0055, #ff5500);
+    transition: width 0.2s;
+}
+#attack-btn {
+    padding: 20px;
+    background: #ff0055;
+    color: white;
+    border: 2px solid #fff;
+    font-weight: bold;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0 5px 0 #990033;
+}
+#attack-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #990033;
+}
+
+/* The Glitch Effect Overlay */
+#glitch-overlay {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 2px);
+    pointer-events: none;
+    z-index: 8000;
+    opacity: 0.3;
+    transition: opacity 0.1s;
+}
+
+/* Offline & Privacy Screen */
+#offline-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #444;
+}
+
+#status-dot {
+    width: 12px;
+    height: 12px;
+    background: #ff0055;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 10px #ff0055;
+}
+
+#privacy-notice {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+/* Animations */
+.hidden { display: none !important; }
+
+.shake { animation: shake 0.2s infinite; }
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(1deg); }
+    50% { transform: translate(-1px, -1px) rotate(-1deg); }
+    100% { transform: translate(0, 0) rotate(0); }
+}
+
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* New: Privacy Breach Text Effect */
+.breach-text {
+    color: #ff0055 !important;
+    text-shadow: 0 0 10px #ff0055;
+    animation: flicker 0.1s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+/* Level 1: Glow effect for letters when grabbed */
+.letter:active {
+    filter: drop-shadow(0 0 15px #00ffcc);
+    transform: scale(1.2);
+}
+
+/* Level 3: Combat Shake */
+.impact {
+    animation: impact-shake 0.1s ease-in-out;
+}
+
+@keyframes impact-shake {
+    0% { transform: translate(5px, 5px); background: #ff0055; }
+    50% { transform: translate(-5px, -5px); background: #000; }
+    100% { transform: translate(0, 0); }
+}
+
+/* Achievement Popups */
+.achievement-pop {
+    position: fixed;
+    top: 20px;
+    background: gold;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    animation: slideDown 0.5s forwards, fadeOut 0.5s 2s forwards;
+}
+
+@keyframes slideDown { from { top: -50px; } to { top: 20px; } }
+@keyframes fadeOut { to { opacity: 0; } }
